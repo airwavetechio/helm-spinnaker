@@ -140,7 +140,7 @@ dockerRegistries:
     - library/ubuntu
     - library/centos
     - library/nginx
-    - airwavetechio/hello-world
+    # - airwavetechio/hello-world # This is for airwavetechio demos
 # - name: gcr
 #   address: https://gcr.io
 #   username: _json_key
@@ -223,7 +223,7 @@ ingressGate:
 #   - pipeline-templates
 spinnakerFeatureFlags:
   - artifacts
-#  - jobs
+#  - jobs #Not yet supported
 
 # Node labels for pod assignment
 # Ref: https://kubernetes.io/docs/user-guide/node-selection/
