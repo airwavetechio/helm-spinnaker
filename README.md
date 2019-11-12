@@ -1,12 +1,15 @@
 # Spinnaker Chart (taken from helm/charts)
 
-[Spinnaker](http://spinnaker.io/) is an open source, multi-cloud continuous delivery platform.
+[Spinnaker](http://spinnaker.io/) is an open source, multi-cloud continuous delivery platform. This repo is tied to a series of Internet posts that intend to teach people about Spinnaker. You will need to have a minikube cluster setup as we have in order for this to work successfully. 
+
 
 ## Chart Details
 This chart will provision a fully functional and fully featured Spinnaker installation, for development 
 and testing puposes on minikube, that can deploy and manage applications in the cluster that it is deployed to.
 
-Redis and Minio are used as the stores for Spinnaker state, but persistence is turned off. 
+Redis and Minio are used as the stores for Spinnaker state, and there are serveral different `values-*.yml` files for your convenience. 
+
+I've also provided an `rbac.yml` file in case you don't have the Helm service account set up with ClusterRole of admin rights. You will need to apply this while installing Spinnaker because the Helm chart creates RBAC policies for its own service accounts. You can delete the rights after you have finished installing. 
 
 For more information on Spinnaker and its capabilities, see it's [documentation](http://www.spinnaker.io/docs).
 
@@ -15,7 +18,7 @@ For more information on Spinnaker and its capabilities, see it's [documentation]
 To install the chart with the release name `spinnaker`:
 
 ```bash
-$ helm install --name spinnaker -f value.yml stable/spinnaker . --timeout 600
+helm install --name spinnaker -f values-<pick one>.yaml --namespace airwave-deploy --tiller-namespace airwave-tiller . --timeout 600
 ```
 
 Note that this chart pulls in many different Docker images so can take a while to fully install.
